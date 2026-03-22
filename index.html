@@ -95,6 +95,7 @@
             gap: 1rem;
             scrollbar-width: thin;
             padding-bottom: 0.8rem;
+            -webkit-overflow-scrolling: touch;
         }
         .gallery-scroll img {
             height: 180px;
@@ -103,6 +104,7 @@
             object-fit: cover;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.2s;
+            cursor: zoom-in;
         }
         .gallery-scroll img:hover {
             transform: scale(1.02);
@@ -142,7 +144,7 @@
             padding: 1.5rem 1.8rem;
         }
         
-        /* 💡时间轴全新优化排版：时间单起一行，右侧文字占满全宽 */
+        /* 时间轴全新优化排版：时间单起一行，右侧文字占满全宽 */
         .timeline-item {
             display: block;
             margin-bottom: 2rem;
@@ -230,6 +232,56 @@
             margin-top: 10px;
             display: block;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            cursor: zoom-in;
+        }
+
+        /* 💡 全屏放大图 (Modal) 样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 5vh;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show {
+            opacity: 1;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            object-fit: contain;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 10000;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
         }
 
         footer {
@@ -240,6 +292,7 @@
             padding-top: 2rem;
             margin-top: 1rem;
             line-height: 1.6;
+            padding-bottom: 2rem;
         }
         @media (max-width: 640px) {
             .container { padding: 1rem; }
@@ -248,6 +301,7 @@
             .hero-content { padding: 1.5rem 1rem; }
             .hero h1 { font-size: 1.6rem; }
             .inline-photo { max-width: 100%; }
+            .close-btn { top: 10px; right: 20px; font-size: 35px; }
         }
     </style>
 </head>
@@ -367,7 +421,7 @@
                     ⛴️ <strong>08:30 普通船</strong>：约55-60分钟（适合顶层看海吹风）。<br>
                     ⛴️ <strong>09:00 高速船</strong>：约35-40分钟（省时快捷）。<br>
                     <span class="meta-badge">注：2026年4月1日起渡轮票价已调整，请以现场为准。</span><br>
-                    <a href="https://www.td.gov.hk/sc/transport_in_hong_kong/public_transport/ferries/service_details/index.html?clickId=7ad38c44ef#o01" class="btn-link" target="_blank">🔗 香港运输署船期与票价详情</a>
+                    <a href="https://www.td.gov.hk/sc/transport_in_hong_kong/public_transport/ferries/service_details/index.html?clickId=7ad38c44ef#o01" class="btn-link" target="_blank">🔗 香港运输署船期详情</a>
                 </div>
             </div>
             <div class="timeline-item">
@@ -471,6 +525,45 @@
     </div>
 
     <div class="day-card">
+        <div class="day-header"><span class="day-title">🎫 门票·船票·交通速查</span><span class="day-date">一键直达</span></div>
+        <div class="day-content">
+            <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+                <div style="flex:1; min-width: 200px;">
+                    <strong>🎢 深圳欢乐谷</strong><br>
+                    ✅ 官方公众号：“深圳欢乐谷” → 购票服务<br>
+                    ✅ 开放时间：10:00-20:00（周末至21:00）<br>
+                    ✅ 地铁：1/2号线世界之窗站A口
+                </div>
+                <div style="flex:1; min-width: 200px;">
+                    <strong>🎡 欢乐港湾摩天轮</strong><br>
+                    ✅ 公众号：“欢乐港湾” → 购票预约<br>
+                    ✅ 运营：10:30-22:00（周一至周日）<br>
+                    ✅ 地铁5号线临海站B2出口
+                </div>
+                <div style="flex:1; min-width: 200px;">
+                    <strong>⛴️ 香港长洲船票</strong><br>
+                    ✅ 中环5号码头现场刷支付宝/八达通/现金<br>
+                    ✅ 快船约35分钟，慢船约55-60分钟<br>
+                    ✅ 岛上建议每人备200-300港币现金
+                </div>
+                <div style="flex:1; min-width: 200px;">
+                    <strong>🍣 曼格海鲜自助 (大仟里店)</strong><br>
+                    ✅ 美团/大众点评搜索订位<br>
+                    ✅ 晚餐时段 17:30-21:00<br>
+                    ✅ 地址：宝安区大仟里购物中心L4
+                </div>
+            </div>
+            <hr style="margin: 1.2rem 0; border: 0; border-top: 1px solid #e5edf2;">
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; color: #1e2f3c; font-size: 0.9rem;">
+                <div><strong>📱 深圳地铁</strong>：“深圳通+”小程序 / 支付宝“出行”</div>
+                <div><strong>🚇 香港交通</strong>：支付宝“香港乘车码” / 八达通</div>
+                <div><strong>🌐 境外流量</strong>：支付宝搜“境外上网”买本地包</div>
+                <div><strong>📌 港澳通行证</strong>：确认有效签注</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="day-card">
         <div class="day-header"><span class="day-title">☀️ 出行锦囊 · 天气与装备</span><span class="day-date">清明实用数据</span></div>
         <div class="day-content">
             <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
@@ -498,8 +591,13 @@
 
     <footer>
         🌟 以上清明深港游信息整合自全网真实攻略与实测数据。<br>
-        📌 深圳北站返程请预留1小时地铁+安检时间。祝旅途顺利，满载美好回忆！
+        📌 深圳北站返程请预留1小时地铁+安检时间。祝旅途顺利，满载美好回忆！@范范出品
     </footer>
+</div>
+
+<div id="imageModal" class="modal">
+    <span class="close-btn">&times;</span>
+    <img class="modal-content" id="fullImage">
 </div>
 
 <script>
@@ -587,6 +685,52 @@
     renderGallery('galleryHarbor', groups.harbor);
     renderGallery('galleryHappyValley', groups.happyValley);
     renderGallery('galleryExtra', groups.extra);
+    
+    // ==========================================
+    // 💡 图片点击全屏放大功能 (Lightbox)
+    // ==========================================
+    setTimeout(() => {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('fullImage');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // 获取页面上所有的图片（除背景图外）
+        const images = document.querySelectorAll('img');
+        
+        images.forEach(img => {
+            // 给图片加上指针样式，提示可点击
+            img.style.cursor = 'zoom-in';
+            
+            // 绑定点击事件
+            img.onclick = function() {
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+                // 添加一点延迟以触发 CSS 动画
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+            }
+        });
+
+        // 关闭放大图的函数
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modalImg.src = '';
+            }, 300); // 与 CSS 的 transition 时间保持一致
+        }
+
+        // 点击右上角 X 关闭
+        closeBtn.onclick = closeModal;
+        
+        // 点击黑色背景也可以关闭
+        modal.onclick = function(e) {
+            if (e.target !== modalImg) {
+                closeModal();
+            }
+        };
+    }, 500); // 稍微延迟，确保图片都已经渲染完成
 </script>
 </body>
 </html>
