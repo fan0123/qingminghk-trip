@@ -107,19 +107,6 @@
         .gallery-scroll img:hover {
             transform: scale(1.02);
         }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.8rem;
-            margin-top: 0.5rem;
-        }
-        .gallery-grid img {
-            width: 100%;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
         /* 行程卡片 */
         .day-card {
             background: white;
@@ -154,37 +141,59 @@
         .day-content {
             padding: 1.5rem 1.8rem;
         }
+        
+        /* 💡时间轴全新优化排版：时间单起一行，右侧文字占满全宽 */
         .timeline-item {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.6rem;
+            display: block;
+            margin-bottom: 2rem;
             border-left: 3px solid #cde0e9;
-            padding-left: 1rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 13px;
+            height: 13px;
+            background: #1f6e5c;
+            border-radius: 50%;
+            border: 3px solid white;
         }
         .time {
-            min-width: 85px;
+            display: inline-block;
             font-weight: 700;
             color: #1f6e5c;
             font-size: 0.85rem;
+            background: #eaf1f5;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
         }
         .detail {
-            flex: 1;
+            display: block;
+            width: 100%;
             line-height: 1.6;
+            color: #1e2f3c;
         }
         .detail strong {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             display: block;
             margin-bottom: 0.4rem;
+            color: #102a43;
         }
+        
         .meta-badge {
             background: #edf4f8;
             border-radius: 30px;
-            font-size: 0.7rem;
-            padding: 0.2rem 0.7rem;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
             margin-right: 0.5rem;
-            margin-top: 0.4rem;
+            margin-top: 0.6rem;
             display: inline-block;
+            font-weight: 500;
         }
         .highlight-note {
             background: #FEF7E0;
@@ -203,10 +212,13 @@
             background: #1f6e5c;
             color: white;
             border-radius: 2rem;
-            padding: 0.3rem 1rem;
-            font-size: 0.75rem;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.8rem;
             text-decoration: none;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
+            margin-right: 0.5rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(31, 110, 92, 0.3);
         }
         
         /* 页面内嵌大图样式 */
@@ -231,10 +243,9 @@
         }
         @media (max-width: 640px) {
             .container { padding: 1rem; }
-            .day-header { padding: 1rem; }
-            .day-content { padding: 1rem; }
-            .time { min-width: 70px; }
-            .hero-content { padding: 1rem; }
+            .day-header { padding: 1rem 1.2rem; }
+            .day-content { padding: 1.5rem 1.2rem; }
+            .hero-content { padding: 1.5rem 1rem; }
             .hero h1 { font-size: 1.6rem; }
             .inline-photo { max-width: 100%; }
         }
@@ -270,7 +281,7 @@
         <div class="day-header"><span class="day-title">🌙 4月3日 · 深夜抵达</span><span class="day-date">23:00 坪洲</span></div>
         <div class="day-content">
             <div class="timeline-item">
-                <div class="time">23:00</div>
+                <div class="time">🕒 23:00</div>
                 <div class="detail">
                     <strong>抵达深圳北站 → 坪洲</strong>
                     乘坐地铁5号线→宝安中心换1号线→坪洲站（约40分钟）。<br>
@@ -285,15 +296,16 @@
         <div class="day-header"><span class="day-title">🎢 Day1 · 欢乐谷尖叫日</span><span class="day-date">4月4日 (清明假期)</span></div>
         <div class="day-content">
             <div class="timeline-item">
-                <div class="time">08:30</div>
+                <div class="time">🕒 08:30</div>
                 <div class="detail">
                     <strong>出发前往世界之窗站</strong>
                     🚇 1号线直达，约25分钟。出站A口步行5分钟即到欢乐谷大门。<br>
-                    🎫 <strong>购票：</strong>微信搜索“深圳欢乐谷”公众号或美团，全天票约¥230，刷身份证入园。
+                    刷身份证直接入园。<br>
+                    <a href="http://m.sz.happyvalley.cn/wap/frmwapparkdetail.aspx?id=Evymma" class="btn-link" target="_blank">🔗 欢乐谷官方购票与详情</a>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time">09:00<br>|<br>16:30</div>
+                <div class="time">🕒 09:00 - 16:30</div>
                 <div class="detail">
                     <strong>🔥 必刷项目推荐（全网高分口碑）</strong>
                     <div style="margin-top: 5px;">
@@ -307,13 +319,13 @@
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time">17:30</div>
+                <div class="time">🕒 17:30</div>
                 <div class="detail">
                     <strong>大仟里 · 曼格海鲜自助晚餐</strong>
                     游玩结束后乘坐地铁返回宝安，直奔大仟里L4层吃海鲜自助补充体力！<br>
-                    🎫 人均约¥228，建议提前通过<strong>大众点评/美团</strong>订位（搜索“曼格海鲜自助宝安大仟里店”）。<br>
                     主打鲜活海鲜、三文鱼、烤榴莲、哈根达斯无限畅吃。<br>
-                    <span class="meta-badge">🍣 必拿：生蚝、罗氏虾、现煎牛排</span>
+                    <span class="meta-badge">🍣 必拿：生蚝、罗氏虾、现煎牛排</span><br>
+                    <a href="https://www.dianping.com/shop/H4Qae4vuCILyiCoR" class="btn-link" target="_blank">🔗 曼格自助大众点评预订</a>
                 </div>
             </div>
             <div class="highlight-note">📌 游玩Tips：可下载“i欢乐谷”小程序查看排队时间；如需玩激流勇进等水上项目，可在园外提前买好一次性雨衣。</div>
@@ -321,7 +333,7 @@
     </div>
 
     <div class="day-card">
-        <div class="day-header"><span class="day-title">⛴️ Day2 · 长洲岛离岛漫游</span><span class="day-date">4月5日 (当日往返)</span></div>
+        <div class="day-header"><span class="day-title">⛴️ Day2 · 长洲岛离岛漫游</span><span class="day-date">4月5日 (周日)</span></div>
         <div class="day-content">
             <div class="highlight-note hk-box">
                 🧭 <strong>行前必备：</strong><br>
@@ -331,7 +343,7 @@
                 ✅ 高德或 Google 地图
             </div>
             <div class="timeline-item">
-                <div class="time">06:20</div>
+                <div class="time">🕒 06:20</div>
                 <div class="detail">
                     <strong>前往福田口岸过关</strong>
                     地铁1号线坪洲→会展中心换4号线→福田口岸站（约50分钟）。<br>
@@ -339,7 +351,7 @@
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time">07:10</div>
+                <div class="time">🕒 07:10</div>
                 <div class="detail">
                     <strong>港铁至中环码头</strong>
                     东铁线落马洲→金钟站，换乘港岛线/荃湾线→中环站A出口。<br>
@@ -348,14 +360,18 @@
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time">08:30</div>
+                <div class="time">🕒 08:30 / 09:00</div>
                 <div class="detail">
-                    <strong>乘船往长洲岛</strong>
-                    ⛴️ 快船约35分钟（$28.1港币），慢船约55分钟（$14.2港币）。建议去程坐快船省时间，直接刷乘车码或八达通入闸。
+                    <strong>乘船往长洲岛（周日及公众假期时刻表）</strong>
+                    前往中环5号码头，直接刷支付宝“香港乘车码”或八达通入闸。<br>
+                    ⛴️ <strong>08:30 普通船</strong>：约55-60分钟（适合顶层看海吹风）。<br>
+                    ⛴️ <strong>09:00 高速船</strong>：约35-40分钟（省时快捷）。<br>
+                    <span class="meta-badge">注：2026年4月1日起渡轮票价已调整，请以现场为准。</span><br>
+                    <a href="https://www.td.gov.hk/sc/transport_in_hong_kong/public_transport/ferries/service_details/index.html?clickId=7ad38c44ef#o01" class="btn-link" target="_blank">🔗 香港运输署船期与票价详情</a>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time">09:30<br>|<br>14:30</div>
+                <div class="time">🕒 09:40 - 14:00</div>
                 <div class="detail">
                     <strong>🏝️ 长洲岛风景与美食巡礼</strong>
                     <div style="margin-top: 5px;">
@@ -373,14 +389,14 @@
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time">14:45</div>
+                <div class="time">🕒 14:30 / 15:00</div>
                 <div class="detail">
                     <strong>乘船返回中环</strong>
-                    抵达中环码头后，可顺路拍摄中环摩天轮，或在IFC商场稍作休息。
+                    根据游玩进度选择返程航班（<strong>14:30 普通船</strong> 或 <strong>15:00 高速船</strong>）。抵达中环码头后，可顺路拍摄中环摩天轮，或在IFC商场稍作休息。
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time">15:30</div>
+                <div class="time">🕒 16:30</div>
                 <div class="detail">
                     <strong>返程深圳坪洲</strong>
                     中环站→金钟→落马洲站（福田口岸过关），转地铁回到坪洲。<br>
@@ -399,7 +415,7 @@
             <div class="highlight-note" style="background:#EFF5FF;">📍 上午休闲二选一：根据个人体力选择【欢乐港湾】或【南头古城】。距离地铁站都很近，不耽误下午高铁。</div>
             
             <div class="timeline-item">
-                <div class="time">09:00</div>
+                <div class="time">🕒 09:00</div>
                 <div class="detail">
                     <strong>✨ 选项A：欢乐港湾 · 湾区之光摩天轮</strong>
                     🚇 坪洲→1号线宝安中心→换5号线→临海站B2出口，出站即达。<br>
@@ -410,7 +426,7 @@
             </div>
             
             <div class="timeline-item">
-                <div class="time">09:00</div>
+                <div class="time">🕒 09:00</div>
                 <div class="detail">
                     <strong>🏛️ 选项B：南头古城 · 千年文脉</strong>
                     🚇 坪洲→1号线桃园站→换12号线→南头古城站D出口。<br>
@@ -421,7 +437,7 @@
             </div>
 
             <div class="timeline-item">
-                <div class="time">12:00</div>
+                <div class="time">🕒 12:00</div>
                 <div class="detail">
                     <strong>😋 壹方城 / 宝中商圈 · 寻味午餐</strong>
                     游玩结束后，推荐前往附近的巨型购物中心——<strong>壹方城</strong>（宝安中心站）。<br>
@@ -436,15 +452,15 @@
             </div>
 
             <div class="timeline-item">
-                <div class="time">13:45</div>
+                <div class="time">🕒 13:45</div>
                 <div class="detail">
-                    <strong>回宿舍休整 & 收拾行李</strong>
+                    <strong>回住处休整 & 收拾行李</strong>
                     吃饱喝足后步行或坐一站地铁回住处，拿上行李准备出发。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time">15:00</div>
+                <div class="time">🕒 15:00</div>
                 <div class="detail">
                     <strong>🚄 出发前往深圳北站</strong>
                     地铁：坪洲→1号线宝安中心→换5号线→深圳北站，约35分钟。<br>
@@ -455,55 +471,16 @@
     </div>
 
     <div class="day-card">
-        <div class="day-header"><span class="day-title">🎫 门票·船票·交通速查</span><span class="day-date">一键直达</span></div>
-        <div class="day-content">
-            <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
-                <div style="flex:1; min-width: 200px;">
-                    <strong>🎢 深圳欢乐谷</strong><br>
-                    ✅ 官方公众号：“深圳欢乐谷” → 购票服务<br>
-                    ✅ 开放时间：10:00-20:00（周末至21:00）<br>
-                    ✅ 地铁：1/2号线世界之窗站A口
-                </div>
-                <div style="flex:1; min-width: 200px;">
-                    <strong>🎡 欢乐港湾摩天轮</strong><br>
-                    ✅ 公众号：“欢乐港湾” → 购票预约<br>
-                    ✅ 运营：10:30-22:00（周一至周日）<br>
-                    ✅ 地铁5号线临海站B2出口
-                </div>
-                <div style="flex:1; min-width: 200px;">
-                    <strong>⛴️ 香港长洲船票</strong><br>
-                    ✅ 中环5号码头现场刷支付宝/八达通/现金<br>
-                    ✅ 快船约35分钟，慢船约55分钟<br>
-                    ✅ 岛上建议每人备200-300港币现金
-                </div>
-                <div style="flex:1; min-width: 200px;">
-                    <strong>🍣 曼格海鲜自助 (大仟里店)</strong><br>
-                    ✅ 美团/大众点评搜索订位<br>
-                    ✅ 晚餐时段 17:30-21:00<br>
-                    ✅ 地址：宝安区大仟里购物中心L4
-                </div>
-            </div>
-            <hr style="margin: 1.2rem 0; border: 0; border-top: 1px solid #e5edf2;">
-            <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; color: #1e2f3c; font-size: 0.9rem;">
-                <div><strong>📱 深圳地铁</strong>：“深圳通+”小程序 / 支付宝“出行”</div>
-                <div><strong>🚇 香港交通</strong>：支付宝“香港乘车码” / 八达通</div>
-                <div><strong>🌐 境外流量</strong>：支付宝搜“境外上网”买本地包</div>
-                <div><strong>📌 港澳通行证</strong>：确认有效签注</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="day-card">
         <div class="day-header"><span class="day-title">☀️ 出行锦囊 · 天气与装备</span><span class="day-date">清明实用数据</span></div>
         <div class="day-content">
             <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
                 <div style="flex:1; min-width: 250px;">
                     <strong>🌡️ 天气参考</strong><br>
-                    <span style="font-size: 0.9rem; color: #334e68; display: block; margin-top: 5px;">清明期间深圳/香港 19℃~26℃，多云间阴，可能有短时阵雨。建议携带折叠伞、薄外套、运动鞋、防晒霜、驱蚊液。</span>
+                    <span style="font-size: 0.95rem; color: #334e68; display: block; margin-top: 5px; line-height: 1.6;">清明期间深圳/香港 19℃~26℃，多云间阴，可能有短时阵雨。建议携带折叠伞、薄外套、运动鞋、防晒霜、驱蚊液。</span>
                 </div>
                 <div style="flex:1; min-width: 250px;">
                     <strong>🎒 必备物品</strong><br>
-                    <ul style="list-style-type: disc; margin-left: 20px; font-size: 0.9rem; color: #334e68; margin-top: 5px;">
+                    <ul style="list-style-type: disc; margin-left: 20px; font-size: 0.95rem; color: #334e68; margin-top: 5px; line-height: 1.6;">
                         <li>身份证、港澳通行证</li>
                         <li>充电宝、数据线、转换头</li>
                         <li>雨衣（游乐园水上项目备用）</li>
@@ -513,7 +490,7 @@
                 </div>
                 <div style="flex:1; min-width: 250px;">
                     <strong>⚠️ 安全注意</strong><br>
-                    <span style="font-size: 0.9rem; color: #334e68; display: block; margin-top: 5px;">香港靠左行走，扶梯靠右站立；长洲岛徒步注意防蚊防晒；在拥挤场所请保管好随身财物。</span>
+                    <span style="font-size: 0.95rem; color: #334e68; display: block; margin-top: 5px; line-height: 1.6;">香港靠左行走，扶梯靠右站立；长洲岛徒步注意防蚊防晒；在拥挤场所请保管好随身财物。</span>
                 </div>
             </div>
         </div>
@@ -562,7 +539,6 @@
     ];
 
     // 基于小红书链接的特征时间戳进行精准分类
-    // 2317 为长洲岛，2319 为欢乐港湾，2314 为欢乐谷
     function classifyImagesByUrlStamp(urls) {
         const cheungChau = [];
         const harbor = [];
